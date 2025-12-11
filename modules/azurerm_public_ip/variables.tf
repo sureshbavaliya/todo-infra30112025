@@ -1,4 +1,4 @@
-variable "public_ips" {
+variable "pip" {
   description = "Map of Public IP configurations"
   type = map(object({
     name                    = string
