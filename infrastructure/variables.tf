@@ -5,3 +5,6 @@ variable "networking" {}
 variable "pip" {}
 
 variable "key_vaults" {}
+
+variable "vms" {}
+
