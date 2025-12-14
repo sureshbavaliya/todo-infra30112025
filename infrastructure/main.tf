@@ -1,7 +1,6 @@
 module "rgs" {
   source = "../modules/azurerm_resource_group"
   rgs    = var.rgs
-
 }
 
 module "network" {
@@ -23,9 +22,10 @@ depends_on = [module.rgs , module.network]
 }
 
 module "vms" {
-  depends_on = [module.public_ip, module.key_vault, module.network, module.rgs]
+  depends_on = [module.public_ip, module.network, module.rgs]
   source     = "../modules/azurerm_compute"
   vms        = var.vms
+
 }
 
 # module "sql_server" {
