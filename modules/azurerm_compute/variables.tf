@@ -1,13 +1,12 @@
 variable "vms" {
   type = map(object({
-    vm_name       = string
-    location      = string
-    rg_name       = string
-    nic_name      = string
-    subnet_name   = string
-    vnet_name     = string
-    pip_name      = string
-    kv_name       = string
+    vm_name        = string
+    location       = string
+    rg_name        = string
+    vnet_name      = string
+    subnet_name    = string
+    nic_name       = string
+    pip_name       = string 
     admin_username = string
     admin_password = string
 
