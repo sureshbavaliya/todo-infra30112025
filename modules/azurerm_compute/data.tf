@@ -1,25 +1,26 @@
-# Needed for dynamic subnet lookup
 data "azurerm_virtual_network" "vnet" {
   for_each = var.vms
 
   name                = each.value.vnet_name
-  resource_group_name = each.value.rg_name
+  resource_group_name = each.value.resource_group_name   # ✅ FIX
 }
 
-data "azurerm_subnet" "subnet" {
+data "azurerm_subnet" "frontend" {
   for_each = var.vms
 
   name                 = each.value.subnet_name
-  virtual_network_name = each.value.vnet_name
-  resource_group_name  = each.value.rg_name
+  virtual_network_name = data.azurerm_virtual_network.vnet[each.key].name
+  resource_group_name  = each.value.resource_group_name   # ✅ FIX
+
 }
 
-# Public IP must EXIST already in Azure
 data "azurerm_public_ip" "pip" {
-  for_each            = var.vms
+  for_each = var.vms
+
   name                = each.value.pip_name
-  resource_group_name = each.value.rg_name
+  resource_group_name = each.value.resource_group_name
 }
+
 
 # # Key Vault must EXIST already
 # data "azurerm_key_vault" "kv" {
