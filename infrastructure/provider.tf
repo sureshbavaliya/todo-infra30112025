@@ -1,4 +1,10 @@
 terraform {
+  #  backend "azurerm" {
+  #   resource_group_name  = "tfstate-rg"
+  #   storage_account_name = "tfsurehsstate01"
+  #   container_name       = "tfstate"
+  #   key                  = "prod/vms/terraform.tfstate"
+  # }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
