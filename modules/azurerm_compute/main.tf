@@ -7,9 +7,9 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = data.azurerm_subnet.frontend[each.key].id   # ✅ FIX
+    subnet_id                     = data.azurerm_subnet.frontend[each.key].id   
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = data.azurerm_public_ip.pip[each.key].id      # ✅ FIX
+    public_ip_address_id          = data.azurerm_public_ip.pip[each.key].id     
   }
 }
 
@@ -19,8 +19,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   name                = each.value.vm_name
   location            = each.value.location
-  resource_group_name = each.value.resource_group_name # ✅ Works after fix
-
+  resource_group_name = each.value.resource_group_name 
   network_interface_ids = [
     azurerm_network_interface.nic[each.key].id
   ]

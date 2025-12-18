@@ -17,7 +17,7 @@ module "public_ips" {
 
 
 module "vms" {
-  depends_on = [module.network]
+  depends_on = [module.public_ips, module.network]
   source     = "../modules/azurerm_compute"
   vms        = var.vms
 
