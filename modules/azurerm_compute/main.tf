@@ -26,8 +26,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   size                            = each.value.size
   disable_password_authentication = false
-  admin_username                  = data.azurerm_key_vault_secret.vm_username[each.key].value
-  admin_password                  = data.azurerm_key_vault_secret.vm_password[each.key].value
+  admin_username                  = data.azurerm_key_vault_secret.admin_username[each.key].value
+  admin_password                  = data.azurerm_key_vault_secret.admin_password[each.key].value
 
   os_disk {
     caching              = "ReadWrite"

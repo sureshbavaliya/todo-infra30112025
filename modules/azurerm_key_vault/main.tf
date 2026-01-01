@@ -1,6 +1,6 @@
 data "azurerm_client_config" "current" {}
 
-resource "azurerm_key_vault" "kv" {
+resource "azurerm_key_vault" "mykv" {
   for_each                    = var.mykv
 
   name                        = each.value.kv_name
@@ -11,6 +11,8 @@ resource "azurerm_key_vault" "kv" {
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
   sku_name                    = "standard"
+
+  
 
 
   access_policy {
@@ -36,11 +38,4 @@ resource "azurerm_key_vault" "kv" {
       "Get",
     ]
   }
-}
-
-resource "azurerm_key_vault_secret" "kv" { 
-  for_each = var.mykv
-  name         = each.value.kvs.name
-  value        = each.value.value
-  key_vault_id = each.value.key_vault_id
 }

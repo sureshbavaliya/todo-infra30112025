@@ -7,7 +7,3 @@ variable "pip" {}
 variable "mykv" {}
 
 variable "vms" {}
-
-variable "kvs" {
-  
-}

@@ -11,13 +11,9 @@ module "network" {
 }
 
 module "mykv" {
- source = "../modules/azurerm_key_vault"
- mykv = var.mykv
-}
-
-module "kvs" {
-  source = "../modules/azurerm_keyvault-secret"
-  kvs =var.kvs
+  depends_on = [module.rgs]
+  source     = "../modules/azurerm_key_vault"
+  mykv       = var.mykv
 }
 
 module "public_ips" {
@@ -28,7 +24,7 @@ module "public_ips" {
 
 
 module "vms" {
-  depends_on = [module.public_ips, module.network]
+  depends_on = [module.public_ips, module.network, module.mykv]
   source     = "../modules/azurerm_compute"
   vms        = var.vms
 
