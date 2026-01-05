@@ -3,10 +3,17 @@ module "rgs" {
   rgs    = var.rgs
 }
 
+
 module "network" {
   depends_on = [module.rgs]
   source     = "../modules/azurerm_networking"
   networking = var.networking
+}
+
+module "mykv" {
+  depends_on = [module.rgs]
+  source     = "../modules/azurerm_key_vault"
+  mykv       = var.mykv
 }
 
 module "public_ips" {
@@ -17,16 +24,12 @@ module "public_ips" {
 
 
 module "vms" {
-  depends_on = [module.public_ips, module.network]
+  depends_on = [module.public_ips, module.network, module.mykv]
   source     = "../modules/azurerm_compute"
   vms        = var.vms
 
 }
-# module "key_vault" {
-# depends_on = [module.rgs , module.network]
-#   source     = "../modules/azurerm_key_vault"
-#   key_vaults = var.key_vaults
-# }
+
 
 
 # module "sql_server" {
