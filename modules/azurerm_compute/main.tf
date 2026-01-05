@@ -28,7 +28,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
   disable_password_authentication = false
   admin_username                  = data.azurerm_key_vault_secret.admin_username[each.key].value
   admin_password                  = data.azurerm_key_vault_secret.admin_password[each.key].value
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"

@@ -9,10 +9,11 @@ variable "vms" {
     nic_name             = string
     pip_name             = optional(string)
     key_vault_name       = string
-    key_vault_rg         = string
     key_vault_id         = optional(string)
+    key_vault_rg             = string
     username_secret_name = string
     password_secret_name = string
+    
   }))
 }
 
