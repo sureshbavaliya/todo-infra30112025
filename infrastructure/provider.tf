@@ -1,9 +1,9 @@
 terraform {
   #  backend "azurerm" {
-  #   resource_group_name  = "tfstate-rg"
-  #   storage_account_name = "tfsurehsstate01"
-  #   container_name       = "tfstate"
-  #   key                  = "prod/vms/terraform.tfstate"
+  #   resource_group_name  = "suresh-rg"
+  #   storage_account_name = "sbstorageacct01"
+  #   container_name       = "appcontainer"
+  #   key                  = "prod.terraform.tfstate"
   # }
   required_providers {
     azurerm = {
@@ -15,5 +15,5 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "711f9f70-1892-49fb-a04f-5bf2c5a89677"
+  subscription_id = "e75903f7-32f6-44d4-822d-7e30295392ea"
 }
