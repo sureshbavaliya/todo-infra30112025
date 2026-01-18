@@ -2,33 +2,37 @@ module "rgs" {
   source = "../modules/azurerm_resource_group"
   rgs    = var.rgs
 }
-
-
-module "network" {
-  depends_on = [module.rgs]
-  source     = "../modules/azurerm_networking"
-  networking = var.networking
+module "storage" {
+  depends_on = [ module.rgs ]
+ source = "../modules/azurerm_storage_account"
+storage = var.storage
 }
 
-module "mykv" {
-  depends_on = [module.rgs]
-  source     = "../modules/azurerm_key_vault"
-  mykv       = var.mykv
-}
+# module "network" {
+#   depends_on = [module.rgs]
+#   source     = "../modules/azurerm_networking"
+#   networking = var.networking
+# }
 
-module "public_ips" {
-  depends_on = [module.network, module.rgs]
-  source     = "../modules/azurerm_public_ip"
-  pip        = var.pip
-}
+# module "mykv" {
+#   depends_on = [module.rgs]
+#   source     = "../modules/azurerm_key_vault"
+#   mykv       = var.mykv
+# }
+
+# module "public_ips" {
+#   depends_on = [module.network, module.rgs]
+#   source     = "../modules/azurerm_public_ip"
+#   pip        = var.pip
+# }
 
 
-module "vms" {
-  depends_on = [module.public_ips, module.network, module.mykv]
-  source     = "../modules/azurerm_compute"
-  vms        = var.vms
+# module "vms" {
+#   depends_on = [module.public_ips, module.network, module.mykv]
+#   source     = "../modules/azurerm_compute"
+#   vms        = var.vms
 
-}
+# }
 
 
 
