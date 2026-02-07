@@ -6,9 +6,9 @@ variable "storage" {
     account_tier             = string
     account_replication_type = string
 
-    containers = map(object({
-      name = string
-    }))
+    # containers = map(object({
+    #   name = string
+    # }))
   }))
 }
 

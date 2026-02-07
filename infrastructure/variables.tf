@@ -1,8 +1,6 @@
 variable "rgs" {}
 
-variable "storage" {}
-
-variable "container" {}
+variable "storages" {}
 
 variable "networking" {}
 
